@@ -1,0 +1,1383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jadoo Travel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Volkhov:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --orange:  #F1A501;
+      --accent:  #DF6951;
+      --dark:    #181E4B;
+      --muted:   #5E6282;
+      --white:   #FFFFFF;
+      --offwhite:#FAFAFA;
+      --shadow:  0 4px 30px rgba(0,0,0,0.07);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: var(--muted);
+      background: var(--white);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    .eyebrow {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+    .section-title {
+      font-family: 'Volkhov', serif;
+      font-size: 2.3rem;
+      font-weight: 700;
+      color: var(--dark);
+      line-height: 1.28;
+    }
+
+    header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: transparent;
+    }
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 22px 20px;
+      display: flex;
+      align-items: center;
+    }
+    .nav-logo img { height: 30px; display: block; }
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+      margin-left: auto;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--dark);
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--orange); }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-left: 36px;
+    }
+    .nav-login {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--dark);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+    }
+    .nav-signup {
+      border: 1.5px solid var(--dark);
+      border-radius: 8px;
+      padding: 8px 22px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--dark);
+      background: none;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      transition: all .2s;
+    }
+    .nav-signup:hover { background: var(--dark); color: #fff; }
+    .nav-lang {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--dark);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+    }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      margin-left: auto;
+    }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--dark); border-radius: 2px; }
+
+    .hero-section {
+      background: #ffffff;
+      overflow: hidden;
+      position: relative;
+    }
+    .hero-section-bg-cream {
+      position: absolute;
+      top: 0; right: 0;
+      width: 70%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .hero {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 120px 40px 60px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      min-height: 88vh;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-left {
+      flex: 1;
+      max-width: 620px;
+    }
+
+    .hero-eyebrow {
+      display: block;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    .hero-h1 {
+      font-family: 'Volkhov', serif;
+      font-size: 5.2rem;
+      font-weight: 700;
+      color: var(--dark);
+      line-height: 1.15;
+      margin-bottom: 24px;
+    }
+    .hero-h1 em { font-style: italic; color: var(--dark); }
+    .hero-h1 .hl {
+      position: relative;
+      display: inline-block;
+      font-style: italic;
+      color: var(--dark);
+    }
+    .hero-h1 .hl .underline-svg {
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 100%;
+      height: 14px;
+      overflow: visible;
+    }
+
+    .hero-p {
+      font-size: 0.95rem;
+      line-height: 1.9;
+      color: var(--muted);
+      max-width: 400px;
+      margin-bottom: 40px;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      margin-bottom: 56px;
+    }
+
+    .btn-find {
+      background: var(--orange);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 15px 40px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      box-shadow: 0 10px 28px rgba(241,165,1,.38);
+      transition: transform .15s, opacity .2s;
+    }
+    .btn-find:hover { transform: translateY(-2px); opacity: .9; }
+
+    .play-btn {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+    }
+    .play-circle {
+      width: 52px;
+      height: 52px;
+      background: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 10px 28px rgba(223,105,81,.38);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .play-circle::after {
+      content: '';
+      border-top: 9px solid transparent;
+      border-bottom: 9px solid transparent;
+      border-left: 15px solid #fff;
+      margin-left: 4px;
+    }
+    .play-label { font-weight: 600; font-size: 0.88rem; color: var(--dark); }
+
+    .hero-stats { display: flex; gap: 52px; }
+    .stat-num {
+      font-family: 'Volkhov', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--dark);
+      line-height: 1;
+    }
+    .stat-num sup { font-size: 1.1rem; }
+    .stat-label { font-size: 0.78rem; color: var(--muted); margin-top: 4px; }
+
+    .hero-right {
+      flex: 1;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 520px;
+    }
+
+    .hero-blob {
+      display: none;
+    }
+
+    .hero-woman {
+      position: relative;
+      z-index: 2;
+      height: 520px;
+      object-fit: contain;
+    }
+
+    .fc-greece {
+      position: absolute;
+      z-index: 5;
+      top: 30px;
+      right: -20px;
+      width: 210px;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.13);
+      overflow: hidden;
+    }
+    .fc-greece-img {
+      width: 100%;
+      height: 110px;
+      object-fit: cover;
+      display: block;
+    }
+    .fc-greece-body { padding: 12px 14px 14px; }
+    .fc-greece-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 3px;
+    }
+    .fc-greece-date {
+      font-size: 0.7rem;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .fc-greece-date span { margin: 0 4px; }
+    .fc-greece-icons {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .fc-greece-icon {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: #F5F5F5;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .fc-greece-icon svg { width: 13px; height: 13px; color: #999; fill: none; stroke: currentColor; stroke-width: 1.8; }
+    .fc-greece-people {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.7rem;
+      color: var(--muted);
+    }
+    .fc-greece-people svg { width: 13px; height: 13px; fill: #CCC; }
+
+    .fc-rome {
+      position: absolute;
+      z-index: 5;
+      bottom: 40px;
+      left: -10px;
+      width: 220px;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+      padding: 14px 16px 16px;
+    }
+    .fc-rome-top {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+    .fc-rome-thumb {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+    .fc-rome-label {
+      font-size: 0.68rem;
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+    .fc-rome-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--dark);
+    }
+    .fc-rome-progress-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+    .fc-rome-pct {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #8B5CF6;
+    }
+    .fc-rome-completed {
+      font-size: 0.75rem;
+      color: var(--dark);
+      font-weight: 500;
+    }
+    .fc-rome-bar {
+      width: 100%;
+      height: 5px;
+      background: #EEE;
+      border-radius: 99px;
+      overflow: hidden;
+    }
+    .fc-rome-fill {
+      width: 40%;
+      height: 100%;
+      background: linear-gradient(90deg, #8B5CF6, #A78BFA);
+      border-radius: 99px;
+    }
+    .fc-rome-heart {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 10px;
+    }
+    .fc-rome-heart svg { width: 16px; height: 16px; fill: none; stroke: #BBB; stroke-width: 1.8; }
+
+    .dots {
+      position: absolute;
+      width: 100px; height: 100px;
+      background-image: radial-gradient(circle, #CCC 1.5px, transparent 1.5px);
+      background-size: 14px 14px;
+      opacity: 0.45;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .dots-hero { bottom: 10px; left: 60px; }
+
+    .inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    .services { padding: 100px 0; }
+    .services-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 48px;
+      margin-bottom: 72px;
+    }
+    .services-head-left { max-width: 320px; }
+    .services-head-right {
+      max-width: 420px;
+      padding-top: 48px;
+      font-size: 0.92rem;
+      line-height: 1.85;
+    }
+    .grid-4-col {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 28px;
+    }
+    .card-wrapper {
+      position: relative;
+      background: #fff;
+      border-radius: 24px;
+      padding: 36px 24px 32px;
+      box-shadow: var(--shadow);
+      transition: transform .3s, box-shadow .3s;
+      text-align: center;
+    }
+    .card-wrapper:hover,
+    .card-wrapper.active {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+    }
+    .card-image {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      position: relative;
+      z-index: 1;
+    }
+    .margin-vertical.margin-medium { margin: 20px 0 12px; }
+    .card-heading {
+      font-family: 'Volkhov', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--dark);
+    }
+    .padding-horizontal.padding-medium { padding: 0 8px; }
+    .paragraph-text {
+      font-size: 0.82rem;
+      line-height: 1.78;
+      color: var(--muted);
+    }
+    .category-cards {
+      position: relative;
+      z-index: 1;
+    }
+    .orange-bead {
+      position: absolute;
+      bottom: -24px;
+      left: -24px;
+      width: 90px;
+      height: 90px;
+      background: var(--accent);
+      border-radius: 20px 20px 0 0;
+      opacity: 0;
+      transition: opacity .3s ease;
+      z-index: -1;
+      pointer-events: none;
+    }
+    .card-wrapper:hover .orange-bead,
+    .card-wrapper.active .orange-bead {
+      opacity: 1;
+    }
+
+    .destinations { padding: 100px 0; }
+    .dest-head { text-align: center; margin-bottom: 64px; }
+    .dest-head .section-title { margin-top: 10px; }
+    .dest-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+    .dest-card {
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      background: #fff;
+      transition: transform .25s, box-shadow .25s;
+    }
+    .dest-card:hover { transform: translateY(-6px); box-shadow: 0 16px 48px rgba(0,0,0,0.10); }
+    .dest-img {
+      width: 100%;
+      height: 228px;
+      object-fit: cover;
+      display: block;
+    }
+    .dest-body {
+      padding: 18px 22px 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .dest-name { font-size: 0.95rem; font-weight: 700; color: var(--dark); }
+    .dest-days {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 5px;
+    }
+    .dest-days svg { flex-shrink: 0; }
+    .dest-price {
+      font-family: 'Volkhov', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .how { padding: 100px 0; }
+    .how-inner {
+      display: flex;
+      align-items: center;
+      gap: 80px;
+    }
+    .how-left { flex: 1 1 420px; max-width: 480px; }
+    .how-title { margin-top: 10px; margin-bottom: 52px; }
+    .steps { display: flex; flex-direction: column; gap: 36px; }
+    .step { display: flex; gap: 22px; align-items: flex-start; }
+    .step-ico { width: 52px; flex-shrink: 0; }
+    .step-name {
+      font-family: 'Volkhov', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 7px;
+    }
+    .step-text { font-size: 0.82rem; line-height: 1.78; }
+
+    .how-right {
+      flex: 1 1 480px;
+      position: relative;
+      min-height: 480px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .how-rome-card {
+      position: relative;
+      z-index: 1;
+      background: #fff;
+      border-radius: 24px;
+      box-shadow: 0 12px 48px rgba(0,0,0,0.10);
+      padding: 28px 28px 24px;
+      width: 300px;
+      margin-top: 60px;
+    }
+    .how-rome-label { font-size: 0.75rem; color: var(--muted); margin-bottom: 4px; }
+    .how-rome-title { font-size: 1.4rem; font-weight: 700; color: var(--dark); margin-bottom: 16px; }
+    .how-rome-pct-row { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+    .how-rome-pct  { font-size: 0.85rem; font-weight: 700; color: #8B5CF6; }
+    .how-rome-done { font-size: 0.85rem; font-weight: 600; color: var(--dark); }
+    .how-rome-bar  { width: 100%; height: 6px; background: #EEE; border-radius: 99px; overflow: hidden; margin-bottom: 20px; }
+    .how-rome-fill { width: 40%; height: 100%; background: linear-gradient(90deg, #8B5CF6, #A78BFA); border-radius: 99px; }
+    .how-rome-heart { display: flex; justify-content: flex-end; }
+    .how-rome-heart svg { width: 18px; height: 18px; }
+
+    .how-greece-card {
+      position: absolute;
+      z-index: 3;
+      top: 0;
+      right: 0;
+      width: 220px;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+      overflow: hidden;
+    }
+    .how-greece-img { width: 100%; height: 120px; object-fit: cover; display: block; }
+    .how-greece-body { padding: 12px 14px 14px; }
+    .how-greece-title { font-size: 0.88rem; font-weight: 700; color: var(--dark); margin-bottom: 3px; }
+    .how-greece-date  { font-size: 0.7rem; color: var(--muted); margin-bottom: 10px; }
+    .how-greece-date span { margin: 0 4px; }
+    .how-greece-icons { display: flex; gap: 8px; margin-bottom: 10px; }
+    .how-greece-icon  {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: #F5F5F5;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .how-greece-icon svg { width: 13px; height: 13px; }
+    .how-greece-people { display: flex; align-items: center; gap: 6px; font-size: 0.7rem; color: var(--muted); }
+
+    .dots-how { top: -10px; right: -10px; }
+
+    .testimonials { padding: 100px 0; }
+    .testi-head { text-align: center; margin-bottom: 64px; }
+    .testi-head .section-title { margin-top: 10px; }
+
+    .testi-wrapper { position: relative; }
+    .testi-track {
+      display: flex;
+      gap: 30px;
+      overflow: hidden;
+    }
+    .tcard {
+      flex: 0 0 calc(33.33% - 20px);
+      background: #fff;
+      border-radius: 24px;
+      padding: 38px 30px;
+      box-shadow: var(--shadow);
+      transition: transform .25s;
+    }
+    .tcard:hover { transform: translateY(-4px); }
+    .tcard.orange { background: var(--orange); }
+
+    .tcard-quote {
+      font-size: 0.87rem;
+      line-height: 1.85;
+      color: var(--muted);
+      margin-bottom: 30px;
+      font-style: italic;
+    }
+    .tcard.orange .tcard-quote { color: rgba(255,255,255,.92); }
+
+    .tcard-author { display: flex; align-items: center; gap: 14px; }
+    .tcard-avatar { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; }
+    .tcard-name {
+      font-family: 'Volkhov', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--dark);
+    }
+    .tcard.orange .tcard-name { color: #fff; }
+    .tcard-role { font-size: 0.78rem; color: var(--muted); margin-top: 3px; }
+    .tcard.orange .tcard-role { color: rgba(255,255,255,.75); }
+
+    .testi-nav {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 16px;
+      margin-top: 40px;
+    }
+    .t-arrow {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      border: 1.5px solid #DDD;
+      background: #fff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all .2s;
+    }
+    .t-arrow:hover { border-color: var(--orange); }
+    .t-arrow img { width: 20px; }
+    .t-arrow.right { transform: scaleX(-1); }
+
+    .t-dots { display: flex; gap: 8px; margin-left: 8px; }
+    .t-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: #DDD;
+      cursor: pointer;
+      transition: background .25s, transform .25s;
+    }
+    .t-dot.on { background: var(--orange); transform: scale(1.25); }
+
+    .logos { padding: 48px 0 64px; }
+    .logos-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .logos-row img {
+      height: 26px;
+      object-fit: contain;
+      filter: grayscale(1);
+      opacity: .45;
+      transition: filter .2s, opacity .2s;
+    }
+    .logos-row img:hover { filter: none; opacity: 1; }
+
+    .subscribe { padding: 60px 0 100px; }
+    .sub-box {
+      background: #fff;
+      border-radius: 28px;
+      box-shadow: 0 8px 60px rgba(0,0,0,0.07);
+      padding: 64px 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    .sub-left { max-width: 380px; position: relative; z-index: 1; }
+    .sub-send  { width: 90px; margin-bottom: 18px; }
+    .sub-title {
+      font-family: 'Volkhov', serif;
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: var(--dark);
+      line-height: 1.3;
+    }
+    .sub-right { flex: 1; max-width: 460px; position: relative; z-index: 1; }
+    .sub-form {
+      display: flex;
+      background: #fff;
+      border: 1.5px solid #E5E5E5;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      overflow: hidden;
+    }
+    .sub-icon { padding: 0 14px; display: flex; align-items: center; }
+    .sub-icon img { width: 20px; opacity: .4; }
+    .sub-input {
+      flex: 1;
+      border: none;
+      outline: none;
+      padding: 15px 8px;
+      font-size: 0.88rem;
+      font-family: 'Poppins', sans-serif;
+      color: var(--dark);
+    }
+    .sub-btn {
+      background: var(--orange);
+      color: #fff;
+      border: none;
+      padding: 15px 28px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      transition: opacity .2s;
+    }
+    .sub-btn:hover { opacity: .9; }
+    .sub-msg { font-size: 0.8rem; margin-top: 10px; display: none; }
+    .sub-msg.ok  { color: #2ecc71; display: block; }
+    .sub-msg.err { color: #e74c3c; display: block; }
+    .sub-plus {
+      position: absolute;
+      bottom: -24px; right: -24px;
+      width: 130px;
+      opacity: .55;
+      pointer-events: none;
+    }
+
+    footer { padding: 72px 0 36px; }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.7fr 1fr 1fr 1fr 1.3fr;
+      gap: 48px;
+      margin-bottom: 56px;
+    }
+    .f-logo img { height: 30px; display: block; margin-bottom: 18px; }
+    .f-brand-text { font-size: 0.84rem; line-height: 1.85; max-width: 230px; margin-bottom: 24px; }
+    .f-socials { display: flex; gap: 12px; }
+    .f-soc img { width: 34px; height: 34px; cursor: pointer; }
+
+    .f-col h4 {
+      font-family: 'Volkhov', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 22px;
+    }
+    .f-col ul { list-style: none; }
+    .f-col ul li { margin-bottom: 12px; }
+    .f-col ul li a {
+      text-decoration: none;
+      font-size: 0.85rem;
+      color: var(--muted);
+      transition: color .2s;
+    }
+    .f-col ul li a:hover { color: var(--orange); }
+
+    .f-app h4 {
+      font-family: 'Volkhov', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 22px;
+    }
+    .f-badges { display: flex; flex-direction: column; gap: 14px; }
+    .f-badges img { height: 38px; object-fit: contain; cursor: pointer; }
+
+    .f-bottom {
+      border-top: 1px solid #EBEBEB;
+      padding-top: 28px;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .mob {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: #fff;
+      z-index: 999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+    }
+    .mob.open { display: flex; }
+    .mob-x {
+      position: absolute;
+      top: 24px; right: 28px;
+      font-size: 2rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--dark);
+      line-height: 1;
+    }
+    .mob a {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--dark);
+      text-decoration: none;
+    }
+
+    .r {
+      opacity: 1;
+      transform: none;
+    }
+    .r.v { opacity: 1; transform: none; }
+
+    @media (max-width: 1100px) {
+      .inner, nav, .hero, .sub-box { padding-left: 32px; padding-right: 32px; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr 1fr; }
+      .f-app { grid-column: 1 / -1; }
+      .hero-h1 { font-size: 3rem; }
+      .hero-blob { width: 380px; height: 380px; }
+      .hero-woman { height: 440px; }
+    }
+    @media (max-width: 860px) {
+      nav { padding: 18px 24px; }
+      .nav-links, .nav-right { display: none; }
+      .hamburger { display: flex; }
+      .hero {
+        flex-direction: column;
+        min-height: auto;
+        padding: 56px 24px 48px;
+        text-align: center;
+      }
+      .hero-left { max-width: 100%; }
+      .hero-eyebrow { justify-content: center; }
+      .hero-p { max-width: 100%; }
+      .hero-actions { justify-content: center; }
+      .hero-stats { justify-content: center; }
+      .hero-right { min-height: 380px; order: -1; }
+      .hero-blob { width: 300px; height: 300px; }
+      .hero-woman { height: 380px; }
+      .fc-trip    { left: 4px; top: 20px; }
+      .fc-booking { right: 4px; bottom: 20px; }
+      .services .inner, .destinations .inner, .how .inner,
+      .testimonials .inner, .logos .inner, .subscribe .inner, footer .inner {
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+      .services-head { flex-direction: column; align-items: center; text-align: center; }
+      .services-head-left, .services-head-right { max-width: 100%; padding-top: 0; }
+      .dest-grid { grid-template-columns: repeat(2, 1fr); }
+      .how-inner { flex-direction: column; }
+      .how-left { max-width: 100%; }
+      .how-right { width: 100%; min-height: 320px; }
+      .tcard { flex: 0 0 88%; }
+      .sub-box { flex-direction: column; text-align: center; padding: 48px 32px; }
+      .sub-left { max-width: 100%; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+    }
+    @media (max-width: 560px) {
+      .dest-grid { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
+      .logos-row { justify-content: center; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .sub-form { flex-direction: column; }
+      footer { padding: 48px 0 28px; }
+      .section-title { font-size: 1.9rem; }
+      .hero-h1 { font-size: 2.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="#" class="nav-logo">
+      <img src="https://cdn.prod.website-files.com/6170700f1a1db6b3a0ac16ed/617938cf6b1c7ac24443ab5a_Jadoo-travel-logo.svg" alt="Jadoo"/>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#destinations">Destinations</a></li>
+      <li><a href="#">Hotels</a></li>
+      <li><a href="#">Flights</a></li>
+      <li><a href="#">Bookings</a></li>
+      <li><a href="#">Logins</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="nav-login">Logins</button>
+      <button class="nav-signup">Sign up</button>
+      <button class="nav-lang">EN ▾</button>
+    </div>
+    <button class="hamburger" id="hbg" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<div class="mob" id="mob">
+  <button class="mob-x" id="mobX">×</button>
+  <a href="#destinations" onclick="closeMob()">Destinations</a>
+  <a href="#" onclick="closeMob()">Hotels</a>
+  <a href="#" onclick="closeMob()">Flights</a>
+  <a href="#" onclick="closeMob()">Bookings</a>
+  <a href="#" onclick="closeMob()">Logins</a>
+  <button class="btn-find" onclick="closeMob()">Sign up</button>
+</div>
+
+<section class="hero-section">
+  <!-- Cream peach organic blob - right side background -->
+  <svg class="hero-section-bg-cream" viewBox="0 0 700 800" preserveAspectRatio="xMinYMin slice" xmlns="http://www.w3.org/2000/svg">
+    <path d="
+      M700,0 L700,800 L0,800
+      C80,800 140,740 160,680
+      C180,620 140,560 120,500
+      C100,440 80,380 100,320
+      C120,260 200,220 220,160
+      C240,100 200,40 220,0
+      Z
+    " fill="#FAF0E4"/>
+  </svg>
+  <div class="hero">
+    <div class="hero-left r">
+      <p class="hero-eyebrow">Best destinations around the world</p>
+      <h1 class="hero-h1">Travel, <span class="hl">enjoy<svg class="underline-svg" viewBox="0 0 160 14" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M2 10 C30 4, 80 12, 158 6" stroke="#DF6951" stroke-width="5" stroke-linecap="round"/></svg></span><br>and live a<br>new<br>and full life</h1>
+      <p class="hero-p">Built Wicket longer admire do barton vanity itself do in it. Preferred to sportsmen it engrossed listening. Park gate sell they west hard for the.</p>
+      <div class="hero-actions">
+        <button class="btn-find">Find out more</button>
+        <button class="play-btn">
+          <div class="play-circle"></div>
+          <span class="play-label">Play Demo</span>
+        </button>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="stat-num">500<sup>+</sup></div>
+          <div class="stat-label">Holiday Package</div>
+        </div>
+        <div>
+          <div class="stat-num">100</div>
+          <div class="stat-label">Luxury Hotel</div>
+        </div>
+        <div>
+          <div class="stat-num">7</div>
+          <div class="stat-label">Premium Airlines</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-right r" style="transition-delay:.15s">
+      <div class="hero-blob"></div>
+      <img
+        class="hero-woman"
+        src="https://cdn.prod.website-files.com/6170700f1a1db6b3a0ac16ed/617938cf58e87917dc7a61ec_woman-planes.png"
+        alt="Traveling lady with luggage"
+      />
+      <div class="dots dots-hero"></div>
+    </div>
+  </div>
+</section>
+
+<section class="services">
+  <div class="inner">
+    <div class="services-head">
+      <div class="services-head-left r">
+        <p class="eyebrow">Category</p>
+        <h2 class="section-title">We Offer Best<br>Services</h2>
+      </div>
+      <p class="services-head-right r" style="transition-delay:.1s">
+        Progressively incentivize cooperative systems through technically sound functionalities. The objective is to integrate progressive metrics.
+      </p>
+    </div>
+    <div class="grid-4-col">
+
+      <div class="card-wrapper r">
+        <div class="category-cards">
+          <img src="https://cdn.prod.website-files.com/6170700f1a1db6b3a0ac16ed/617938cf8befd5647f6ee006_calculated-weather.svg" alt="satelite" class="card-image"/>
+          <div class="margin-vertical margin-medium">
+            <h2 class="card-heading">Calculated Weather</h2>
+          </div>
+          <div class="padding-horizontal padding-medium">
+            <p class="paragraph-text">Built Wicket longer admire do barton vanity itself do in it.</p>
+          </div>
+        </div>
+        <div class="orange-bead"></div>
+      </div>
+
+      <div class="card-wrapper r" style="transition-delay:.08s">
+        <div class="category-cards">
+          <img src="https://cdn.prod.website-files.com/6170700f1a1db6b3a0ac16ed/617b4ffef312fc9c2c00637b_best-flights.svg" alt="plane" class="card-image"/>
+          <div class="margin-vertical margin-medium">
+            <h2 class="card-heading">Best Flights</h2>
+          </div>
+          <div class="padding-horizontal padding-medium">
+            <p class="paragraph-text">Engrossed listening. Park gate sell they west hard for the.</p>
+          </div>
+        </div>
+        <div class="orange-bead"></div>
+      </div>
+
+      <div class="card-wrapper r" style="transition-delay:.16s">
+        <div class="category-cards">
+          <img src="https://cdn.prod.website-files.com/6170700f1a1db6b3a0ac16ed/617b5305a737275d341ee519_local-events.png" alt="local events" class="card-image"/>
+          <div class="margin-vertical margin-medium">
+            <h2 class="card-heading">Local Events</h2>
+          </div>
+          <div class="padding-horizontal padding-medium">
+            <p class="paragraph-text">Barton vanity itself do in it. Prefferd to men it engrossed listening.</p>
+          </div>
+        </div>
+        <div class="orange-bead"></div>
+      </div>
+
+      <div class="card-wrapper r" style="transition-delay:.24s">
+        <div class="category-cards">
+          <img src="https://cdn.prod.website-files.com/6170700f1a1db6b3a0ac16ed/617938cf4df7bb609a9a5f21_customization.svg" alt="customization" class="card-image"/>
+          <div class="margin-vertical margin-medium">
+            <h2 class="card-heading">Customization</h2>
+          </div>
+          <div class="padding-horizontal padding-medium">
+            <p class="paragraph-text">We deliver outsourced aviation services for military customers</p>
+          </div>
+        </div>
+        <div class="orange-bead"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="destinations" id="destinations">
+  <div class="inner">
+    <div class="dest-head r">
+      <p class="eyebrow">Top Selling</p>
+      <h2 class="section-title">Top Destinations</h2>
+    </div>
+    <div class="dest-grid">
+      <a href="#" class="dest-card r">
+        <img class="dest-img" src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=700&q=80" alt="Rome, Italy"/>
+        <div class="dest-body">
+          <div>
+            <div class="dest-name">Rome, Italy</div>
+            <div class="dest-days">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="#F1A501"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>
+              10 days trip
+            </div>
+          </div>
+          <div class="dest-price">$5200</div>
+        </div>
+      </a>
+      <a href="#" class="dest-card r" style="transition-delay:.1s">
+        <img class="dest-img" src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=700&q=80" alt="London, UK"/>
+        <div class="dest-body">
+          <div>
+            <div class="dest-name">London, UK</div>
+            <div class="dest-days">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="#F1A501"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>
+              12 days trip
+            </div>
+          </div>
+          <div class="dest-price">$4200</div>
+        </div>
+      </a>
+      <a href="#" class="dest-card r" style="transition-delay:.2s">
+        <img class="dest-img" src="https://images.unsplash.com/photo-1555993539-1732b0258235?w=700&q=80" alt="Macedonia"/>
+        <div class="dest-body">
+          <div>
+            <div class="dest-name">Macedonia</div>
+            <div class="dest-days">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="#F1A501"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>
+              28 days trip
+            </div>
+          </div>
+          <div class="dest-price">$15000</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="how">
+  <div class="inner">
+    <div class="how-inner">
+      <div class="how-left">
+        <div class="r">
+          <p class="eyebrow">Easy and Fast</p>
+          <h2 class="section-title how-title">Book your Next Trip<br>in 3 Easy steps</h2>
+        </div>
+        <div class="steps">
+          <div class="step r">
+            <img class="step-ico" src="https://cdn.prod.website-files.com/6170700f1a1db6b3a0ac16ed/617938d08573df8aa0b825af_icon-chosedestination.svg" alt="Choose"/>
+            <div>
+              <h3 class="step-name">Choose Destination</h3>
+              <p class="step-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Urna, tortor tempus.</p>
+            </div>
+          </div>
+          <div class="step r" style="transition-delay:.1s">
+            <img class="step-ico" src="https://cdn.prod.website-files.com/6170700f1a1db6b3a0ac16ed/617938cec00b4023cfe65e13_icon-makepayment.svg" alt="Payment"/>
+            <div>
+              <h3 class="step-name">Make Payment</h3>
+              <p class="step-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Urna, tortor tempus.</p>
+            </div>
+          </div>
+          <div class="step r" style="transition-delay:.2s">
+            <img class="step-ico" src="https://cdn.prod.website-files.com/6170700f1a1db6b3a0ac16ed/617938cfc00b4049bee65e26_icon-reachairport.svg" alt="Airport"/>
+            <div>
+              <h3 class="step-name">Reach Airport on Date</h3>
+              <p class="step-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Urna, tortor tempus.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="how-right r" style="transition-delay:.1s">
+        <div class="dots dots-how"></div>
+
+        <div class="how-rome-card">
+          <div class="how-rome-label">Ongoing</div>
+          <div class="how-rome-title">Trip to rome</div>
+          <div class="how-rome-pct-row">
+            <span class="how-rome-pct">40%</span>
+            <span class="how-rome-done">completed</span>
+          </div>
+          <div class="how-rome-bar"><div class="how-rome-fill"></div></div>
+          <div class="how-rome-heart">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#C4C4C4" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+          </div>
+        </div>
+
+        <div class="how-greece-card">
+          <img class="how-greece-img" src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=400&q=80" alt="Greece"/>
+          <div class="how-greece-body">
+            <div class="how-greece-title">Trip To Greece</div>
+            <div class="how-greece-date">14–29 June <span>|</span> by Robbin joseph</div>
+            <div class="how-greece-icons">
+              <div class="how-greece-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="1.6"><path d="M12 22s-8-6-8-12a8 8 0 0116 0c0 6-8 12-8 12z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div class="how-greece-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+              </div>
+              <div class="how-greece-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="1.6"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+              </div>
+            </div>
+            <div class="how-greece-people">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#CCC" stroke-width="1.5" width="13" height="13"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+              24 people going
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials">
+  <div class="inner">
+    <div class="testi-head r">
+      <p class="eyebrow">Testimonials</p>
+      <h2 class="section-title">What People Say<br>About Us</h2>
+    </div>
+    <div class="testi-wrapper r" style="transition-delay:.1s">
+      <div class="testi-track" id="tt">
+        <div class="tcard">
+          <p class="tcard-quote">"On the Windows talking painted pasture yet its express parties use. Sure last upon he same as knew next. Of believed or diverted no."</p>
+          <div class="tcard-author">
+            <img class="tcard-avatar" src="https://cdn.prod.website-files.com/6170700f1a1db6b3a0ac16ed/6189b86707e564ae28237eee_profilepic.png" alt="Chris"/>
+            <div>
+              <div class="tcard-name">Chris Thomas</div>
+              <div class="tcard-role">CEO of Red Button</div>
+            </div>
+          </div>
+        </div>
+        <div class="tcard orange">
+          <p class="tcard-quote">"After going through a number of sites, I had to settle for Jadoo because honestly it was a no brainer trying someone else"</p>
+          <div class="tcard-author">
+            <img class="tcard-avatar" src="https://cdn.prod.website-files.com/6170700f1a1db6b3a0ac16ed/618c4301f6e7897b8952e8b3_avatar-woman.png" alt="Sarah"/>
+            <div>
+              <div class="tcard-name">Sarah Connor</div>
+              <div class="tcard-role">Globetrotter</div>
+            </div>
+          </div>
+        </div>
+        <div class="tcard">
+          <p class="tcard-quote">"On the Windows talking painted pasture yet its express parties use. Sure last upon he same as knew next. Of believed or diverted no."</p>
+          <div class="tcard-author">
+            <img class="tcard-avatar" src="https://cdn.prod.website-files.com/6170700f1a1db6b3a0ac16ed/6189b3d342965fa263672fc2_founder-pic.png" alt="Mike"/>
+            <div>
+              <div class="tcard-name">Mike Taylor</div>
+              <div class="tcard-role">Lahore, Pakistan</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-nav">
+        <button class="t-arrow right" id="tPrev">
+          <img src="https://cdn.prod.website-files.com/6170700f1a1db6b3a0ac16ed/6189b91e1d8629ae992fc363_slider-arrow.svg" alt="prev"/>
+        </button>
+        <button class="t-arrow" id="tNext">
+          <img src="https://cdn.prod.website-files.com/6170700f1a1db6b3a0ac16ed/6189b91e1d8629ae992fc363_slider-arrow.svg" alt="next"/>
+        </button>
+        <div class="t-dots">
+          <div class="t-dot on" data-i="0"></div>
+          <div class="t-dot" data-i="1"></div>
+          <div class="t-dot" data-i="2"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="logos">
+  <div class="inner">
+    <div class="logos-row r">
+      <img src="https://cdn.prod.website-files.com/6170700f1a1db6b3a0ac16ed/617938cf9e2702befb6cd457_logo-avon.png"     alt="Axon"/>
+      <img src="https://cdn.prod.website-files.com/6170700f1a1db6b3a0ac16ed/617938d05c891c4cf1ca713a_logo-jetstar.png"   alt="Jetstar"/>
+      <img src="https://cdn.prod.website-files.com/6170700f1a1db6b3a0ac16ed/617938cf9f94ee62add0ce04_logo-expedia.png"   alt="Expedia"/>
+      <img src="https://cdn.prod.website-files.com/6170700f1a1db6b3a0ac16ed/617938cf9ff2818825438ce4_logo-qantas.png"    alt="Qantas"/>
+      <img src="https://cdn.prod.website-files.com/6170700f1a1db6b3a0ac16ed/617938d04df7bbb8e49a5f22_logo-alitalia.png"  alt="Alitalia"/>
+    </div>
+  </div>
+</section>
+
+<section class="subscribe">
+  <div class="inner">
+    <div class="sub-box r">
+      <div class="sub-left">
+        <img class="sub-send" src="https://cdn.prod.website-files.com/6170700f1a1db6b3a0ac16ed/61829084f89d5e3f298e80e8_send-now.png" alt="Send"/>
+        <h2 class="sub-title">Subscribe to get information, latest news and other interesting offers about Cobham</h2>
+      </div>
+      <div class="sub-right">
+        <div class="sub-form">
+          <div class="sub-icon">
+            <img src="https://cdn.prod.website-files.com/6170700f1a1db6b3a0ac16ed/618282ada7bbc94aa4c6da0d_icon-inbox.svg" alt=""/>
+          </div>
+          <input class="sub-input" id="subIn" type="email" placeholder="Your email"/>
+          <button class="sub-btn" onclick="doSub()">Subscribe</button>
+        </div>
+        <p class="sub-msg" id="subMsg"></p>
+      </div>
+      <img class="sub-plus" src="https://cdn.prod.website-files.com/6170700f1a1db6b3a0ac16ed/618291653a82d98516a7a9e2_plus-graphics.svg" alt=""/>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="inner">
+    <div class="footer-grid">
+      <div class="f-brand">
+        <div class="f-logo">
+          <img src="https://cdn.prod.website-files.com/6170700f1a1db6b3a0ac16ed/617938cf6b1c7ac24443ab5a_Jadoo-travel-logo.svg" alt="Jadoo"/>
+        </div>
+        <p class="f-brand-text">Book your trip in minute, get full control for much longer.</p>
+        <div class="f-socials">
+          <a href="#" class="f-soc"><img src="https://cdn.prod.website-files.com/6170700f1a1db6b3a0ac16ed/6182cf4274a44e6e7da73a69_social-facebook.svg"  alt="Facebook"/></a>
+          <a href="#" class="f-soc"><img src="https://cdn.prod.website-files.com/6170700f1a1db6b3a0ac16ed/6182d0e504bd110c32a33720_social-instagram.png" alt="Instagram"/></a>
+          <a href="#" class="f-soc"><img src="https://cdn.prod.website-files.com/6170700f1a1db6b3a0ac16ed/6182cf4143539f10af511cb4_social-twitter.svg"   alt="Twitter"/></a>
+        </div>
+      </div>
+      <div class="f-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Mobile</a></li>
+        </ul>
+      </div>
+      <div class="f-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="#">Help / FAQ</a></li>
+          <li><a href="#">Press</a></li>
+          <li><a href="#">Affiliates</a></li>
+        </ul>
+      </div>
+      <div class="f-col">
+        <h4>More</h4>
+        <ul>
+          <li><a href="#">Airline fees</a></li>
+          <li><a href="#">Airline</a></li>
+          <li><a href="#">Low fare tips</a></li>
+        </ul>
+      </div>
+      <div class="f-app">
+        <h4>Discover our app</h4>
+        <div class="f-badges">
+          <img src="https://cdn.prod.website-files.com/6170700f1a1db6b3a0ac16ed/617938ce9e2702000e6cd442_Google-Play.svg" alt="Google Play"/>
+          <img src="https://cdn.prod.website-files.com/6170700f1a1db6b3a0ac16ed/617938ce5c0563f505c2699e_Play-Store.svg"  alt="App Store"/>
+        </div>
+      </div>
+    </div>
+    <div class="f-bottom">All rights reserved&nbsp;<strong>@jadoo.co</strong></div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('hbg').onclick = () => document.getElementById('mob').classList.add('open');
+  document.getElementById('mobX').onclick = closeMob;
+  function closeMob() { document.getElementById('mob').classList.remove('open'); }
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('v'); obs.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.r').forEach(el => obs.observe(el));
+
+  const track = document.getElementById('tt');
+  const tcards = track.querySelectorAll('.tcard');
+  const dots = document.querySelectorAll('.t-dot');
+  let cur = 0;
+
+  function goTo(i) {
+    cur = Math.max(0, Math.min(tcards.length - 1, i));
+    if (window.innerWidth <= 860) {
+      const w = track.parentElement.offsetWidth;
+      track.style.cssText = `transform: translateX(-${cur * (w * 0.88 + 30)}px); transition: transform .35s ease;`;
+    }
+    dots.forEach((d, idx) => d.classList.toggle('on', idx === cur));
+  }
+
+  document.getElementById('tPrev').onclick = () => goTo(cur - 1);
+  document.getElementById('tNext').onclick = () => goTo(cur + 1);
+  dots.forEach(d => d.addEventListener('click', () => goTo(+d.dataset.i)));
+  window.addEventListener('resize', () => { if (window.innerWidth > 860) track.style.transform = ''; });
+
+  document.getElementById('subIn').addEventListener('keydown', e => { if (e.key === 'Enter') doSub(); });
+  function doSub() {
+    const inp = document.getElementById('subIn');
+    const msg = document.getElementById('subMsg');
+    if (inp.value && inp.value.includes('@')) {
+      msg.className = 'sub-msg ok';
+      msg.textContent = '✓ Thank you! Your submission has been received!';
+      inp.value = '';
+      setTimeout(() => { msg.className = 'sub-msg'; }, 4000);
+    } else {
+      msg.className = 'sub-msg err';
+      msg.textContent = 'Please enter a valid email address.';
+      setTimeout(() => { msg.className = 'sub-msg'; }, 2500);
+    }
+  }
+</script>
+</body>
+</html>
