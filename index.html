@@ -618,70 +618,91 @@
     .dots-how { top: -10px; right: -10px; }
 
     .testimonials { padding: 100px 0; }
-    .testi-head { text-align: center; margin-bottom: 64px; }
+    .testi-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 40px;
+      align-items: center;
+    }
+    .testi-head { text-align: left; margin-bottom: 0; }
     .testi-head .section-title { margin-top: 10px; }
 
     .testi-wrapper { position: relative; }
+    .testi-row { display: flex; align-items: stretch; gap: 16px; }
     .testi-track {
       display: flex;
-      gap: 30px;
       overflow: hidden;
+      flex: 1;
+      min-width: 0;
+      padding-top: 36px;
     }
     .tcard {
-      flex: 0 0 calc(33.33% - 20px);
+      flex: 0 0 100%;
       background: #fff;
-      border-radius: 24px;
-      padding: 38px 30px;
+      border-radius: 20px;
+      padding: 50px 36px 32px;
       box-shadow: var(--shadow);
-      transition: transform .25s;
+      position: relative;
+      transition: transform .35s ease;
     }
-    .tcard:hover { transform: translateY(-4px); }
     .tcard.orange { background: var(--orange); }
 
+    .tcard-avatar {
+      width: 90px; height: 90px;
+      border-radius: 50%;
+      object-fit: cover;
+      position: absolute;
+      top: -30px;
+      left: 36px;
+      border: 4px solid #fff;
+      box-shadow: var(--shadow);
+    }
+
     .tcard-quote {
-      font-size: 0.87rem;
+      font-size: 0.95rem;
       line-height: 1.85;
       color: var(--muted);
-      margin-bottom: 30px;
-      font-style: italic;
+      margin-bottom: 24px;
+      font-style: normal;
     }
     .tcard.orange .tcard-quote { color: rgba(255,255,255,.92); }
 
     .tcard-author { display: flex; align-items: center; gap: 14px; }
-    .tcard-avatar { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; }
     .tcard-name {
       font-family: 'Volkhov', serif;
-      font-size: 1rem;
+      font-size: 1.05rem;
       font-weight: 700;
       color: var(--dark);
     }
     .tcard.orange .tcard-name { color: #fff; }
-    .tcard-role { font-size: 0.78rem; color: var(--muted); margin-top: 3px; }
+    .tcard-role { font-size: 0.8rem; color: var(--muted); margin-top: 3px; }
     .tcard.orange .tcard-role { color: rgba(255,255,255,.75); }
 
     .testi-nav {
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
+      justify-content: center;
       gap: 16px;
-      margin-top: 40px;
     }
     .t-arrow {
-      width: 48px; height: 48px;
+      width: 40px; height: 40px;
       border-radius: 50%;
-      border: 1.5px solid #DDD;
-      background: #fff;
+      border: none;
+      background: none;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       transition: all .2s;
     }
-    .t-arrow:hover { border-color: var(--orange); }
-    .t-arrow img { width: 20px; }
-    .t-arrow.right { transform: scaleX(-1); }
+    .t-arrow:hover { color: var(--orange); }
+    .t-arrow img { width: 16px; transform: rotate(-90deg); opacity: .6; }
+    .t-arrow:hover img { opacity: 1; }
+    .t-arrow#tNext img { transform: rotate(90deg); }
 
-    .t-dots { display: flex; gap: 8px; margin-left: 8px; }
+    .t-dots-row { display: flex; justify-content: flex-start; margin-top: 32px; margin-left: 36px; }
+    .t-dots { display: flex; gap: 8px; }
     .t-dot {
       width: 10px; height: 10px;
       border-radius: 50%;
@@ -710,43 +731,63 @@
 
     .subscribe { padding: 60px 0 100px; }
     .sub-box {
-      background: #fff;
-      border-radius: 28px;
-      box-shadow: 0 8px 60px rgba(0,0,0,0.07);
-      padding: 64px 72px;
+      background: #F3F1FC;
+      border-radius: 64px 28px 28px 28px;
+      padding: 80px 60px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 48px;
+      justify-content: center;
       position: relative;
       overflow: hidden;
     }
-    .sub-left { max-width: 380px; position: relative; z-index: 1; }
-    .sub-send  { width: 90px; margin-bottom: 18px; }
+    .sub-fab {
+      position: absolute;
+      top: -26px;
+      right: 24px;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #8B7CF6, #6A5AE0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 24px rgba(106,90,224,0.35);
+      z-index: 2;
+    }
+    .sub-fab img { width: 24px; }
+    .sub-content {
+      max-width: 620px;
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
     .sub-title {
       font-family: 'Volkhov', serif;
-      font-size: 1.9rem;
+      font-size: 2rem;
       font-weight: 700;
       color: var(--dark);
-      line-height: 1.3;
+      line-height: 1.35;
+      margin-bottom: 36px;
     }
-    .sub-right { flex: 1; max-width: 460px; position: relative; z-index: 1; }
     .sub-form {
       display: flex;
+      align-items: center;
       background: #fff;
-      border: 1.5px solid #E5E5E5;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      border-radius: 999px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
       overflow: hidden;
+      max-width: 560px;
+      margin: 0 auto;
+      padding: 6px;
     }
-    .sub-icon { padding: 0 14px; display: flex; align-items: center; }
+    .sub-icon { padding: 0 10px 0 14px; display: flex; align-items: center; }
     .sub-icon img { width: 20px; opacity: .4; }
     .sub-input {
       flex: 1;
       border: none;
       outline: none;
-      padding: 15px 8px;
-      font-size: 0.88rem;
+      padding: 12px 8px;
+      font-size: 0.9rem;
       font-family: 'Poppins', sans-serif;
       color: var(--dark);
     }
@@ -754,24 +795,38 @@
       background: var(--orange);
       color: #fff;
       border: none;
-      padding: 15px 28px;
+      border-radius: 999px;
+      padding: 14px 32px;
       font-weight: 700;
-      font-size: 0.88rem;
+      font-size: 0.9rem;
       cursor: pointer;
       font-family: 'Poppins', sans-serif;
       transition: opacity .2s;
     }
     .sub-btn:hover { opacity: .9; }
-    .sub-msg { font-size: 0.8rem; margin-top: 10px; display: none; }
+    .sub-msg { font-size: 0.8rem; margin-top: 14px; display: none; }
     .sub-msg.ok  { color: #2ecc71; display: block; }
     .sub-msg.err { color: #e74c3c; display: block; }
-    .sub-plus {
+
+    .sub-circles {
       position: absolute;
-      bottom: -24px; right: -24px;
-      width: 130px;
-      opacity: .55;
+      width: 460px;
+      height: 460px;
       pointer-events: none;
     }
+    .sub-circles-left  { left: -220px; bottom: -220px; }
+    .sub-circles-right { right: -220px; top: -220px; }
+    .sub-circles span {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 1.5px solid rgba(106,90,224,0.28);
+    }
+    .sub-circles span:nth-child(1) { inset: 0; }
+    .sub-circles span:nth-child(2) { inset: 26px 50px 50px 26px; }
+    .sub-circles span:nth-child(3) { inset: 52px 100px 100px 52px; }
+    .sub-circles span:nth-child(4) { inset: 78px 150px 150px 78px; }
+    .sub-circles span:nth-child(5) { inset: 104px 200px 200px 104px; }
 
     footer { padding: 72px 0 36px; }
     .footer-grid {
@@ -894,9 +949,14 @@
       .how-inner { flex-direction: column; }
       .how-left { max-width: 100%; }
       .how-right { width: 100%; min-height: 320px; }
-      .tcard { flex: 0 0 88%; }
-      .sub-box { flex-direction: column; text-align: center; padding: 48px 32px; }
-      .sub-left { max-width: 100%; }
+      .testi-grid { grid-template-columns: 1fr; text-align: center; }
+      .testi-head { text-align: center; }
+      .tcard { flex: 0 0 100%; }
+      .t-dots-row { justify-content: center; margin-left: 0; }
+      .sub-box { padding: 48px 28px; }
+      .sub-title { font-size: 1.5rem; }
+      .sub-form { flex-direction: column; border-radius: 14px; }
+      .sub-btn { margin: 8px; }
       .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
     }
     @media (max-width: 560px) {
@@ -1195,51 +1255,55 @@
 </section>
 
 <section class="testimonials">
-  <div class="inner">
+  <div class="inner testi-grid">
     <div class="testi-head r">
       <p class="eyebrow">Testimonials</p>
       <h2 class="section-title">What People Say<br>About Us</h2>
     </div>
     <div class="testi-wrapper r" style="transition-delay:.1s">
-      <div class="testi-track" id="tt">
-        <div class="tcard">
-          <p class="tcard-quote">"On the Windows talking painted pasture yet its express parties use. Sure last upon he same as knew next. Of believed or diverted no."</p>
-          <div class="tcard-author">
+      <div class="testi-row">
+        <div class="testi-track" id="tt">
+          <div class="tcard">
             <img class="tcard-avatar" src="https://cdn.prod.website-files.com/6170700f1a1db6b3a0ac16ed/6189b86707e564ae28237eee_profilepic.png" alt="Chris"/>
-            <div>
-              <div class="tcard-name">Chris Thomas</div>
-              <div class="tcard-role">CEO of Red Button</div>
+            <p class="tcard-quote">"On the Windows talking painted pasture yet its express parties use. Sure last upon he same as knew next. Of believed or diverted no."</p>
+            <div class="tcard-author">
+              <div>
+                <div class="tcard-name">Chris Thomas</div>
+                <div class="tcard-role">CEO of Red Button</div>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="tcard orange">
-          <p class="tcard-quote">"After going through a number of sites, I had to settle for Jadoo because honestly it was a no brainer trying someone else"</p>
-          <div class="tcard-author">
+          <div class="tcard">
             <img class="tcard-avatar" src="https://cdn.prod.website-files.com/6170700f1a1db6b3a0ac16ed/618c4301f6e7897b8952e8b3_avatar-woman.png" alt="Sarah"/>
-            <div>
-              <div class="tcard-name">Sarah Connor</div>
-              <div class="tcard-role">Globetrotter</div>
+            <p class="tcard-quote">"After going through a number of sites, I had to settle for Jadoo because honestly it was a no brainer trying someone else"</p>
+            <div class="tcard-author">
+              <div>
+                <div class="tcard-name">Sarah Connor</div>
+                <div class="tcard-role">Globetrotter</div>
+              </div>
+            </div>
+          </div>
+          <div class="tcard">
+            <img class="tcard-avatar" src="https://cdn.prod.website-files.com/6170700f1a1db6b3a0ac16ed/6189b3d342965fa263672fc2_founder-pic.png" alt="Mike"/>
+            <p class="tcard-quote">"On the Windows talking painted pasture yet its express parties use. Sure last upon he same as knew next. Of believed or diverted no."</p>
+            <div class="tcard-author">
+              <div>
+                <div class="tcard-name">Mike Taylor</div>
+                <div class="tcard-role">Lahore, Pakistan</div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="tcard">
-          <p class="tcard-quote">"On the Windows talking painted pasture yet its express parties use. Sure last upon he same as knew next. Of believed or diverted no."</p>
-          <div class="tcard-author">
-            <img class="tcard-avatar" src="https://cdn.prod.website-files.com/6170700f1a1db6b3a0ac16ed/6189b3d342965fa263672fc2_founder-pic.png" alt="Mike"/>
-            <div>
-              <div class="tcard-name">Mike Taylor</div>
-              <div class="tcard-role">Lahore, Pakistan</div>
-            </div>
-          </div>
+        <div class="testi-nav">
+          <button class="t-arrow" id="tPrev">
+            <img src="https://cdn.prod.website-files.com/6170700f1a1db6b3a0ac16ed/6189b91e1d8629ae992fc363_slider-arrow.svg" alt="prev"/>
+          </button>
+          <button class="t-arrow" id="tNext">
+            <img src="https://cdn.prod.website-files.com/6170700f1a1db6b3a0ac16ed/6189b91e1d8629ae992fc363_slider-arrow.svg" alt="next"/>
+          </button>
         </div>
       </div>
-      <div class="testi-nav">
-        <button class="t-arrow right" id="tPrev">
-          <img src="https://cdn.prod.website-files.com/6170700f1a1db6b3a0ac16ed/6189b91e1d8629ae992fc363_slider-arrow.svg" alt="prev"/>
-        </button>
-        <button class="t-arrow" id="tNext">
-          <img src="https://cdn.prod.website-files.com/6170700f1a1db6b3a0ac16ed/6189b91e1d8629ae992fc363_slider-arrow.svg" alt="next"/>
-        </button>
+      <div class="t-dots-row">
         <div class="t-dots">
           <div class="t-dot on" data-i="0"></div>
           <div class="t-dot" data-i="1"></div>
@@ -1265,11 +1329,17 @@
 <section class="subscribe">
   <div class="inner">
     <div class="sub-box r">
-      <div class="sub-left">
-        <img class="sub-send" src="https://cdn.prod.website-files.com/6170700f1a1db6b3a0ac16ed/61829084f89d5e3f298e80e8_send-now.png" alt="Send"/>
-        <h2 class="sub-title">Subscribe to get information, latest news and other interesting offers about Cobham</h2>
+      <div class="sub-fab">
+        <img src="https://cdn.prod.website-files.com/6170700f1a1db6b3a0ac16ed/61829084f89d5e3f298e80e8_send-now.png" alt="Send"/>
       </div>
-      <div class="sub-right">
+      <div class="sub-circles sub-circles-left" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="sub-circles sub-circles-right" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="sub-content">
+        <h2 class="sub-title">Subscribe to get information, latest news and other interesting offers about Cobham</h2>
         <div class="sub-form">
           <div class="sub-icon">
             <img src="https://cdn.prod.website-files.com/6170700f1a1db6b3a0ac16ed/618282ada7bbc94aa4c6da0d_icon-inbox.svg" alt=""/>
@@ -1279,7 +1349,6 @@
         </div>
         <p class="sub-msg" id="subMsg"></p>
       </div>
-      <img class="sub-plus" src="https://cdn.prod.website-files.com/6170700f1a1db6b3a0ac16ed/618291653a82d98516a7a9e2_plus-graphics.svg" alt=""/>
     </div>
   </div>
 </section>
@@ -1351,17 +1420,13 @@
 
   function goTo(i) {
     cur = Math.max(0, Math.min(tcards.length - 1, i));
-    if (window.innerWidth <= 860) {
-      const w = track.parentElement.offsetWidth;
-      track.style.cssText = `transform: translateX(-${cur * (w * 0.88 + 30)}px); transition: transform .35s ease;`;
-    }
+    track.style.transform = `translateX(-${cur * 100}%)`;
     dots.forEach((d, idx) => d.classList.toggle('on', idx === cur));
   }
 
   document.getElementById('tPrev').onclick = () => goTo(cur - 1);
   document.getElementById('tNext').onclick = () => goTo(cur + 1);
   dots.forEach(d => d.addEventListener('click', () => goTo(+d.dataset.i)));
-  window.addEventListener('resize', () => { if (window.innerWidth > 860) track.style.transform = ''; });
 
   document.getElementById('subIn').addEventListener('keydown', e => { if (e.key === 'Enter') doSub(); });
   function doSub() {
